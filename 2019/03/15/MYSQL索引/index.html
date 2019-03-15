@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/innodb-sec-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/mylsam-sec-key.jpg">
-<meta property="og:updated_time" content="2019-03-15T15:37:24.884Z">
+<meta property="og:updated_time" content="2019-03-15T16:03:50.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL索引">
 <meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。 MySQL与存储引擎存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以">
@@ -341,7 +341,7 @@
 <p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
 <p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
 <h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM索引实现也是用的B+Tree作为索引结构，不一样的是叶节点存放的是数据记录的地址。主索引和辅助索引的结构一样，叶节点也都是存放的数据记录的地址，只是主索引的key值唯一，而辅助索引的key值可以重复。<br><img src="/images/mylsam-sec-key.jpg" alt="辅助引结构图">          </p>
-<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html][1]" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html][1]</a></em>   </p>
+<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html]" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html]</a></em>   </p>
 
       
     </div>
