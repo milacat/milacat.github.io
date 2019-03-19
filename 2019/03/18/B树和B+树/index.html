@@ -88,11 +88,11 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/data-structure/B-TREE.png">
 <meta property="og:image" content="http://yoursite.com/images/data-structure/bTree-1.png">
-<meta property="og:image" content="http://yoursite.com/images/data-structure/bTree-2.png">
+<meta property="og:image" content="http://yoursite.com/images/data-structure/bTree2.png">
 <meta property="og:image" content="http://yoursite.com/images/data-structure/bTree3.png">
 <meta property="og:image" content="http://yoursite.com/images/data-structure/bTree4.png">
 <meta property="og:image" content="http://yoursite.com/images/data-structure/bTree5.png">
-<meta property="og:updated_time" content="2019-03-19T12:25:32.943Z">
+<meta property="og:updated_time" content="2019-03-19T12:55:06.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="B树和B+树">
 <meta name="twitter:description" content="B树和B+树B树经常被称呼为或者被写成B-树，-是连接符而非减号，几年前的我知道B+树后，就天真的以为这是B-(减)树，其实，到目前为止，B减树还没有出现呢╮(╯_╰)╭。B树是一种多叉平衡查找数，所谓平衡，则是指所有叶子节点都在同一层。如示例图所示：我们在学习数据结构时，诸如二叉树、红黑数都有其特有的结构，鲜明的特性。既然B树能够拥有姓名，必然也是有其看家本领的。在介绍B树的特性前，先介绍两个概">
@@ -333,7 +333,7 @@
 </li>
 </ol>
 </blockquote>
-<h3 id="B树的操作-查找、插入、删除"><a href="#B树的操作-查找、插入、删除" class="headerlink" title="B树的操作-查找、插入、删除"></a>B树的操作-查找、插入、删除</h3><p><strong>查找</strong><br>从根节点开始，从上到下递归的遍历树, 在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键(关键字)确定，相当于一次二分查找。<br><strong>插入</strong><br>和查找一样，所有的插入也是从根节点开始，先查找被添加的元素在树中应该被添加到的叶子节点的位置。找到叶子节点的位置后，添加新元素的步骤如下：<br>a)如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序，如图所示，红色为新添加的元素，黑色部分为插入前的B树结构。<br><img src="/images/data-structure/bTree-1.png" alt="B-Tree insert"><br><img src="/images/data-structure/bTree-2.png" alt="insert2"><br>b)如果这个节点已经满了，则要平均的<strong>分裂</strong>成两个节点:<br>i)从叶子节点的元素和新的元素中选择出中位数<br>ii)小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值<br>iii)分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。<br><img src="/images/data-structure/bTree3.png" alt="B-Tree insert3"><br>首先，很容易就找到了应该被添加到的叶子节点的位置，这是一个3阶B树，根据特性“关键字的个数n必须满足： [ceil(m / 2)-1]&lt;= n &lt;= m-1” 计算出关键字的个数不能超过2个，所以要将关键字为5、6、7的节点分裂成2个节点，6作为分隔值插入到父节点(此处也是根节点)中，插入后仍然不满足规律，继续分裂，选取分隔值4创建一个新的跟节点，增加树的高度。操作完成后树的结构图如下：<br><img src="/images/data-structure/bTree4.png" alt="B-Tree insert4">   </p>
+<h3 id="B树的操作-查找、插入、删除"><a href="#B树的操作-查找、插入、删除" class="headerlink" title="B树的操作-查找、插入、删除"></a>B树的操作-查找、插入、删除</h3><p><strong>查找</strong><br>从根节点开始，从上到下递归的遍历树, 在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键(关键字)确定，相当于一次二分查找。<br><strong>插入</strong><br>和查找一样，所有的插入也是从根节点开始，先查找被添加的元素在树中应该被添加到的叶子节点的位置。找到叶子节点的位置后，添加新元素的步骤如下：<br>a)如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序，如图所示，红色为新添加的元素，黑色部分为插入前的B树结构。<br><img src="/images/data-structure/bTree-1.png" alt="B-Tree insert">   <img src="/images/data-structure/bTree2.png" alt="insert2"><br>b)如果这个节点已经满了，则要平均的<strong>分裂</strong>成两个节点:<br>i)从叶子节点的元素和新的元素中选择出中位数<br>ii)小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值<br>iii)分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。<br><img src="/images/data-structure/bTree3.png" alt="B-Tree insert3"><br>首先，很容易就找到了应该被添加到的叶子节点的位置，这是一个3阶B树，根据特性“关键字的个数n必须满足： [ceil(m / 2)-1]&lt;= n &lt;= m-1” 计算出关键字的个数不能超过2个，所以要将关键字为5、6、7的节点分裂成2个节点，6作为分隔值插入到父节点(此处也是根节点)中，插入后仍然不满足规律，继续分裂，选取分隔值4创建一个新的跟节点，增加树的高度。操作完成后树的结构图如下：<br><img src="/images/data-structure/bTree4.png" alt="B-Tree insert4">   </p>
 </li>
 </ol>
 <p><strong>删除</strong><br>定位并删除元素，然后调整树使它满足约束条件</p>

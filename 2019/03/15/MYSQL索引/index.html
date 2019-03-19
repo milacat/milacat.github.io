@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/innodb-sec-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/mylsam-sec-key.jpg">
-<meta property="og:updated_time" content="2019-03-19T12:25:39.052Z">
+<meta property="og:updated_time" content="2019-03-19T12:59:16.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL索引">
 <meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
@@ -336,7 +336,7 @@
 <li>操作安全性低、对内存的占用高</li>
 </ul>
 <h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>在介绍存储引擎和索引之前先了解几个概念:主索引(Primary Key,根据主键建立的索引),辅助索引(Secondary Key,非主键索引),聚集索引(树状结构的索引&amp;叶节点包含了完整的数据记录而不是指向的地址位置)</p>
-<p>InnoDB使用<strong>B+Tree</strong>作为索引结构。</p>
+<p>InnoDB使用<strong>B+Tree</strong>(欢迎移步查看文章<a href="/2019/03/18/B树和B+树/" title="B树和B+树">B树和B+树</a>)作为索引结构。</p>
 <p><img src="/images/innodb-pri-key.jpg" alt="主索引结构图"><br>在使用InnoDB的数据库中，如果没有设置索引，MYSQL系统会自动选择一个可以唯一标志数据的字段作为索引，但如果没有这样的字段，会生成一个隐含的字段作为主键(对表的使用者不可见)。基于这样的特性，说明使用InnoDB的数据库表总是有主键的，则会生成主键索引，则说明InnoDB的数据文件本身就是索引文件。</p>
 <p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
 <p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
