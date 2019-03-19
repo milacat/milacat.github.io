@@ -160,7 +160,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">努力成为开发界中的小太阳</p>
+        <p class="site-subtitle">今天也要加油鸭！</p>
       
   </div>
 
@@ -237,7 +237,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mila Lee">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -302,52 +302,17 @@
 
       
         
-          
-            <h1 id="B树和B-树"><a href="#B树和B-树" class="headerlink" title="B树和B+树"></a>B树和B+树</h1><p>B树经常被称呼为或者被写成B-树，-是连接符而非减号，几年前的我知道B+树后，就天真的以为这是B-(减)树，其实，到目前为止，B减树还没有出现呢╮(╯_╰)╭。B树是一种多叉平衡查找数，所谓平衡，则是指所有叶子节点都在同一层。如示例图所示：<br><a href="/images/data_structure/B-TREE.png">B-TREE</a><br>我们在学习数据结构时，诸如二叉树、红黑数都有其特有的结构，鲜明的特性。既然B树能够拥有姓名，必然也是有其看家本领的。在介绍B树的特性前，先介绍两个概念。</p>
-<h3 id="阶和高度"><a href="#阶和高度" class="headerlink" title="阶和高度"></a>阶和高度</h3><p>B树的<strong>阶</strong>：树中所有节点的最大子节点数 = 节点中最多的关键字数量+1，用M表示。<br>B树的<strong>高度</strong>：节点的层数，用H表示，高度$ H≤㏒_{t}\frac{n+1}{2} $,其中t为阶数，n为元素总个数。<br>我们可以看出阶数t对于树的高度有决定性的影响，如果每个节点包含更多的元素(关键字)个数，在元素个数相同的情况下，则更有可能减少B树的高度，在查找元素时能减少IO读取的次数。这也是为什么SQL Server中需要尽量以窄键建立聚集索引。因为SQL Server中每个节点的大小为8092字节，如果减少键的大小，则可以容纳更多的元素，从而减少了B树的高度，提升了查询的性能。<br><strong>关于高度的性能分析</strong><br>由上述定理可知：B树的高度为O(logtn)。于是在B树上查找、插入和删除的读写盘的次数为O($ log_{t}n $)，CPU计算时间为O($  mlog_{t}n $)。  </p>
-<ol>
-<li>n个结点的平衡的二叉排序的高度H（即lgn）比B树的高度h约大lgt倍。<br>例如：若元素总数n=1024，阶数t为512，则$ lg_t $=lg512=9。此时若B树高度为4，则平衡的二叉排序树的高度约为36。显然，若m越大，则B树高度越小。    </li>
-<li><p>若要作为内存中的查找表，B树却不一定比平衡的二叉排序树好，尤其当m较大时更是如此。<br>因为查找等操作的CPU计算时间在B-树上是O(mlogtn),根据换底公式logab=(logcb)/(logca)</p>
-<pre><code>可以推导出O(mlogtn) = O(lgn·(m/lgt))。   
-</code></pre><p>若m/lgt&gt;1，所以m较大时O(mlogtn)比平衡的二叉排序树上相应操作的时间O(lgn)大得多。因此，仅在内存中使用的B树必须取较小的阶M。（通常取最小值m=3，此时B树中每个内部结点可以有2或3个孩子，这种3阶的B树称为2-3树。   </p>
-<h3 id="一个非空的m阶B树具有如下特性"><a href="#一个非空的m阶B树具有如下特性" class="headerlink" title="一个非空的m阶B树具有如下特性"></a>一个非空的m阶B树具有如下特性</h3><blockquote>
-<ol>
-<li>树中每个节点最多有m个子节点;</li>
-<li>除根结点和叶子结点外，其它每个结点至少有[ceil(m / 2)]个孩子（其中ceil(x)是一个对x进行上舍入取整的函数）;</li>
-<li>若根节点不是叶子节点，则至少有两个子节点;</li>
-<li>所有叶子节点出现在同一层;</li>
-<li>有k个子节点的非叶子节点拥有k-1个关键字;</li>
-<li>每个非终端节点包含所有关键字及关键字的信息，比如一个有n个关键字的非终端节点，其结构为(n，P0，K1，P1，K2，P2，……，Kn，Pn)，其中   <blockquote>
-<ul>
-<li>n表示关键字数量，Ki (i=1…n)为关键字，且关键字按顺序升序排序K(i-1)&lt; Ki;</li>
-<li>Pi为指向子树根的接点，且指针P(i-1)指向子树中所有节点的关键字的值均小于Ki，但都大于K(i-1);</li>
-<li>关键字的个数n必须满足： [ceil(m / 2)-1]&lt;= n &lt;= m-1。   </li>
-</ul>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-<h3 id="B树的操作-查找、插入、删除"><a href="#B树的操作-查找、插入、删除" class="headerlink" title="B树的操作-查找、插入、删除"></a>B树的操作-查找、插入、删除</h3><p><strong>查找</strong><br>从根节点开始，从上到下递归的遍历树, 在每一层上，搜索的范围被减小到包含了搜索值的子树中。子树值的范围被它的父节点的键(关键字)确定，相当于一次二分查找。<br><strong>插入</strong><br>和查找一样，所有的插入也是从根节点开始，先查找被添加的元素在树中应该被添加到的叶子节点的位置。找到叶子节点的位置后，添加新元素的步骤如下：<br>a)如果节点拥有的元素数量小于最大值，那么有空间容纳新的元素。将新元素插入到这一节点，且保持节点中元素有序，如图所示，红色为新添加的元素，黑色部分为插入前的B树结构。<br><a href="/images/data_structure/bTree-1.png">B-Tree insert</a> <a href="/images/data_structure/bTree-2.png">insert2</a><br>b)如果这个节点已经满了，则要平均的<strong>分裂</strong>成两个节点:<br>i)从叶子节点的元素和新的元素中选择出中位数<br>ii)小于这一中位数的元素放入左边节点，大于这一中位数的元素放入右边节点，中位数作为分隔值<br>iii)分隔值被插入到父节点中，这可能会造成父节点分裂，分裂父节点时可能又会使它的父节点分裂，以此类推。如果没有父节点（这一节点是根节点），就创建一个新的根节点（增加了树的高度）。<br><a href="/images/data_structure/bTree3.png">B-Tree insert3</a><br>首先，很容易就找到了应该被添加到的叶子节点的位置，这是一个3阶B树，根据特性“关键字的个数n必须满足： [ceil(m / 2)-1]&lt;= n &lt;= m-1” 计算出关键字的个数不能超过2个，所以要将关键字为5、6、7的节点分裂成2个节点，6作为分隔值插入到父节点(此处也是根节点)中，插入后仍然不满足规律，继续分裂，选取分隔值4创建一个新的跟节点，增加树的高度。操作完成后树的结构图如下：<br><a href="/images/data_structure/bTree4.png">B-Tree insert4</a>   </p>
-</li>
-</ol>
-<p><strong>删除</strong><br>定位并删除元素，然后调整树使它满足约束条件</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p>B+树示意图<br><a href="/images/data_structure/bTree5.png">B+树示意图</a>   </p>
-<p><strong>一棵m阶的B+树和m阶的B树的定义大致相同，差异如下：</strong></p>
-<blockquote>
-<ol>
-<li>非叶子节点的子树指针与关键字个数相同(B 树是n棵子树有n-1个关键)</li>
-<li>非叶子节点的子树指针P[i]，指向关键字值属于[K[i], K[i+1])的子树 </li>
-<li>为所有叶子结点增加一个链指针  </li>
-<li>所有关键字都出现在叶子节点的链表中，同时叶子节点也包含了指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接。 (而B树的叶子节点并没有包括全部需要查找的信息)</li>
-<li>在查找时B+树只有达到叶子节点才命中（B树可以在非叶子节点命中），非叶子节点相当于是叶子节点的索引（稀疏索引），叶子节点相当于是存储（关键字）数据的数据层</li>
-</ol>
-</blockquote>
-<h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B*树"></a>B*树</h3><p>是B+树的变体，在B+树的非根和非叶子结点再增加指向兄弟的指针。   </p>
-
-          
+          <h1 id="B树和B-树"><a href="#B树和B-树" class="headerlink" title="B树和B+树"></a>B树和B+树</h1><p>B树经常被称呼为或者被写成B-树，-是连接符而非减号，几年前的我知道B+树后，就天真的以为这是B-(减)树，其实，到目前为止，B减树还没有出现呢╮(╯_╰)╭。B树是一种多叉平衡查找数，所谓平衡，则是指所有叶子节点都在同一层。如示例图所示：<br><img src="/images/data-structure/B-TREE.png" alt="B-TREE"><br>我们在学习数据结构时，诸如二叉树、红黑数都有其特有的结构，鲜明的特性。既然B树能够拥有姓名，必然也是有其看家本领的。在介绍B树的特性前，先介绍两个概念。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/18/B树和B+树/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -396,7 +361,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mila Lee">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -461,46 +426,18 @@
 
       
         
-          
-            <h1 id="MYSQL索引简介"><a href="#MYSQL索引简介" class="headerlink" title="MYSQL索引简介"></a>MYSQL索引简介</h1><p>每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。</p>
-<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。</p>
-<h3 id="MySQL与存储引擎"><a href="#MySQL与存储引擎" class="headerlink" title="MySQL与存储引擎"></a>MySQL与存储引擎</h3><p>存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以通过SHOW ENGINES明明查看MYSQL支持的所有存储引擎。</p>
-<p><strong>InnoDB</strong>      </p>
-<ul>
-<li>MYSQL默认存储引擎</li>
-<li>支持AUTO_INCREMENT(MYSQL中规定自增列必须为主键)</li>
-<li>支持外键</li>
-<li>提供了良好的事务处理、崩溃修复能力和并发控制</li>
-<li>读写效率差，对内存和空间的占用相对较高</li>
-</ul>
-<p><strong>MyISAM</strong>     </p>
-<ul>
-<li>曾经的MYSQL默认存储引擎</li>
-</ul>
-<ul>
-<li>插入数据快、对空间和内存的占用低  </li>
-</ul>
-<ul>
-<li>不支持事物的完整性和并发性。使用于主要是插入新纪录或查询记录的表</li>
-</ul>
-<p><strong>MEMORY</strong>      </p>
-<ul>
-<li>使用存储在内存中的内容创建表、数据也保存在内存中</li>
-<li>默认使用哈希索引，数据处理速度快</li>
-<li>操作安全性低、对内存的占用高</li>
-</ul>
-<h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>在介绍存储引擎和索引之前先了解几个概念:主索引(Primary Key,根据主键建立的索引),辅助索引(Secondary Key,非主键索引),聚集索引(树状结构的索引&amp;叶节点包含了完整的数据记录而不是指向的地址位置)</p>
-<p>InnoDB使用<strong>B+Tree</strong>作为索引结构。</p>
-<p><img src="/images/innodb-pri-key.jpg" alt="主索引结构图"><br>在使用InnoDB的数据库中，如果没有设置索引，MYSQL系统会自动选择一个可以唯一标志数据的字段作为索引，但如果没有这样的字段，会生成一个隐含的字段作为主键(对表的使用者不可见)。基于这样的特性，说明使用InnoDB的数据库表总是有主键的，则会生成主键索引，则说明InnoDB的数据文件本身就是索引文件。</p>
-<p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
-<p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
-<h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM索引实现也是用的B+Tree作为索引结构，不一样的是叶节点存放的是数据记录的地址。主索引和辅助索引的结构一样，叶节点也都是存放的数据记录的地址，只是主索引的key值唯一，而辅助索引的key值可以重复。<br><img src="/images/mylsam-sec-key.jpg" alt="辅助引结构图">          </p>
-<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html]" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html]</a></em>   </p>
-
-          
+          <h1 id="MYSQL索引简介"><a href="#MYSQL索引简介" class="headerlink" title="MYSQL索引简介"></a>MYSQL索引简介</h1><p>每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。</p>
+<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/15/MYSQL索引/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -565,6 +502,8 @@
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mila Lee">
             
               <p class="site-author-name" itemprop="name">Mila Lee</p>
               <p class="site-description motion-element" itemprop="description">　余忆童稚时，能张目对日，明察秋毫，见藐小之物必细察其纹理，故时有物外之趣。</p>

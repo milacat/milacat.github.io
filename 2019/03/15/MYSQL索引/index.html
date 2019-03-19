@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。 MySQL与存储引擎存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以">
+<meta name="description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MYSQL索引">
 <meta property="og:url" content="http://yoursite.com/2019/03/15/MYSQL索引/index.html">
 <meta property="og:site_name" content="米拉的博客">
-<meta property="og:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。 MySQL与存储引擎存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以">
+<meta property="og:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/innodb-sec-key.jpg">
 <meta property="og:image" content="http://yoursite.com/images/mylsam-sec-key.jpg">
-<meta property="og:updated_time" content="2019-03-15T16:04:31.294Z">
+<meta property="og:updated_time" content="2019-03-19T12:25:39.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MYSQL索引">
-<meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。 MySQL与存储引擎存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以">
+<meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
 <meta name="twitter:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
 
 
@@ -164,7 +164,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">努力成为开发界中的小太阳</p>
+        <p class="site-subtitle">今天也要加油鸭！</p>
       
   </div>
 
@@ -241,7 +241,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mila Lee">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -309,7 +309,7 @@
 
       
         <h1 id="MYSQL索引简介"><a href="#MYSQL索引简介" class="headerlink" title="MYSQL索引简介"></a>MYSQL索引简介</h1><p>每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。</p>
-<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。</p>
+<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。<br><a id="more"></a></p>
 <h3 id="MySQL与存储引擎"><a href="#MySQL与存储引擎" class="headerlink" title="MySQL与存储引擎"></a>MySQL与存储引擎</h3><p>存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以通过SHOW ENGINES明明查看MYSQL支持的所有存储引擎。</p>
 <p><strong>InnoDB</strong>      </p>
 <ul>
@@ -341,7 +341,7 @@
 <p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
 <p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
 <h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM索引实现也是用的B+Tree作为索引结构，不一样的是叶节点存放的是数据记录的地址。主索引和辅助索引的结构一样，叶节点也都是存放的数据记录的地址，只是主索引的key值唯一，而辅助索引的key值可以重复。<br><img src="/images/mylsam-sec-key.jpg" alt="辅助引结构图">          </p>
-<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html]" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html]</a></em>   </p>
+<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html</a>]</em>   </p>
 
       
     </div>
@@ -439,6 +439,8 @@
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Mila Lee">
             
               <p class="site-author-name" itemprop="name">Mila Lee</p>
               <p class="site-description motion-element" itemprop="description">　余忆童稚时，能张目对日，明察秋毫，见藐小之物必细察其纹理，故时有物外之趣。</p>
