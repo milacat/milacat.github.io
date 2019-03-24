@@ -87,7 +87,7 @@
 <meta property="og:description" content="线程简介现在操作系统在运行一个程序时，会为其创建一个进程。例如，启动一个Java程序，操作系统就会创建一个Java进程。现代操作系统调度的最小单元是线程，也叫做轻量级进程（Light Weight Process），在一个进程里可以创建多个线程，这些线程拥有各自的计数器、堆栈和局部变量等属性，并且能够访问共享的内部变量。处理器在这些线程上高速切换，让使用者感觉到这些线程在同时执行。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/thread-state.jpeg">
-<meta property="og:updated_time" content="2019-03-24T05:35:32.497Z">
+<meta property="og:updated_time" content="2019-03-24T06:00:01.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发变成基础">
 <meta name="twitter:description" content="线程简介现在操作系统在运行一个程序时，会为其创建一个进程。例如，启动一个Java程序，操作系统就会创建一个Java进程。现代操作系统调度的最小单元是线程，也叫做轻量级进程（Light Weight Process），在一个进程里可以创建多个线程，这些线程拥有各自的计数器、堆栈和局部变量等属性，并且能够访问共享的内部变量。处理器在这些线程上高速切换，让使用者感觉到这些线程在同时执行。">
@@ -466,7 +466,15 @@ private void init(ThreadGroup g, Runnable target, String name, long stackSize, A
     tid = nextThreadID();
 }   
 </code></pre><p>至此，一个线程对象就初始化好了，在堆内存中等待着运行。   </p>
-<h2 id="线程中的常用方法"><a href="#线程中的常用方法" class="headerlink" title="线程中的常用方法"></a>线程中的常用方法</h2><p><strong>中断</strong><br>中断可以理解为线程的一个标准位属性，它表示一个运行中的线程是否被其他线程进行了中断操作。我曾经以为线程中断就是线程停止执行，而实际上只是一个状态而已，true表示被中断，false表示未被中断。<br>可以通过isInterrupted()来进行判断是否被中断，也可以用Thread.interrupted()对当前线程进行复位操作。<br>从Java的API中可以看到，许多声明InterruptedException的方法在抛出InterruptedException之前，Java虚拟机会先将线程的中断标志位清除，然后抛出InterruptedException。    </p>
+<h2 id="线程中的常用方法"><a href="#线程中的常用方法" class="headerlink" title="线程中的常用方法"></a>线程中的常用方法</h2><p><strong>中断</strong><br>中断可以理解为线程的一个标准位属性，它表示一个运行中的线程是否被其他线程进行了中断操作。我曾经以为线程中断就是线程停止执行，而实际上只是一个状态而已，true表示被中断，false表示未被中断，线程中断并不会使线程立即退出，而是通过标志位属性的改变通知线程说你可以退出了，但是后面如何处理，是否退出，则根据线程目前正在执行的方法而定，根据源码中的说明知道有sleep(),wait(),join()方法收到通知后会抛出异常并退出，其他方法则不受影响,以下是interrupted()方法的注解：</p>
+<pre><code>* &lt;p&gt; If this thread is blocked in an invocation of the {@link
+ * Object#wait() wait()}, {@link Object#wait(long) wait(long)}, or {@link
+ * Object#wait(long, int) wait(long, int)} methods of the {@link Object}
+ * class, or of the {@link #join()}, {@link #join(long)}, {@link
+ * #join(long, int)}, {@link #sleep(long)}, or {@link #sleep(long, int)},
+ * methods of this class, then its interrupt status will be cleared and it
+ * will receive an {@link InterruptedException}.
+</code></pre><p>可以通过isInterrupted()来进行判断是否被中断，也可以用Thread.interrupted()对当前线程进行复位操作。<br>从Java的API中可以看到，许多声明InterruptedException的方法在抛出InterruptedException之前，Java虚拟机会先将线程的中断标志位清除，然后抛出InterruptedException。    </p>
 <pre><code>public class Interrupted {
 
     public static void main(String[] args) {
