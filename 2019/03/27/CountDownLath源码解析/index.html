@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
+<meta name="description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自        AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CountDownLath">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/CountDownLath源码解析/index.html">
 <meta property="og:site_name" content="米拉的博客">
-<meta property="og:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
+<meta property="og:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自        AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShar">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/countdownlatch@2x.png">
-<meta property="og:updated_time" content="2019-03-27T13:25:01.670Z">
+<meta property="og:updated_time" content="2019-03-27T13:30:26.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CountDownLath">
-<meta name="twitter:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
+<meta name="twitter:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自        AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShar">
 <meta name="twitter:image" content="http://yoursite.com/images/countdownlatch@2x.png">
 
 
@@ -348,8 +348,11 @@
       
 
       
-        <p>在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。<br>CountDownLath的内结构如下：<br><img src="/images/countdownlatch@2x.png" alt="CountDownLath内结构"><br>Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。<br>    private static final class Sync extends AbstractQueuedSynchronizer {<br>        private static final long serialVersionUID = 4982264981922014374L;</p>
-<pre><code>    Sync(int count) {
+        <p>在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。<br>CountDownLath的内结构如下：<br><img src="/images/countdownlatch@2x.png" alt="CountDownLath内结构"><br>Sync是 CountDownLath的一个内部类，继承自        AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。</p>
+<pre><code>private static final class Sync extends AbstractQueuedSynchronizer {
+    private static final long serialVersionUID = 4982264981922014374L;
+
+    Sync(int count) {
         setState(count);
     }
 
@@ -373,8 +376,10 @@
         }
     }
 }   
-</code></pre><p>CountDownLatch的初始化，n为需要观察的线程数，用来设置内部类Sync的state字段值<br>    private static CountDownLatch latch = new CountDownLatch(n);<br>每个线程完成操作后，可以调用countDown方法，通过调用AQS的releaseShared方法使state的值减1.<br>下面是一个简单的示例：<br>    public class CountDownLatchTest {</p>
-<pre><code>static CountDownLatch start = new CountDownLatch(1);
+</code></pre><p>CountDownLatch的初始化，n为需要观察的线程数，用来设置内部类Sync的state字段值<br>    private static CountDownLatch latch = new CountDownLatch(n);<br>每个线程完成操作后，可以调用countDown方法，通过调用AQS的releaseShared方法使state的值减1.<br>下面是一个简单的示例：</p>
+<pre><code>public class CountDownLatchTest {
+
+static CountDownLatch start = new CountDownLatch(1);
 static CountDownLatch end;
 
 public static void main(String[] args) throws InterruptedException {
