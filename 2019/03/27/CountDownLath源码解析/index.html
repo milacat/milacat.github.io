@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据库,索引,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,22 +79,19 @@
 
 
 
-<meta name="description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
-<meta name="keywords" content="数据库,索引">
+<meta name="description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MYSQL索引">
-<meta property="og:url" content="http://yoursite.com/2019/03/15/MYSQL索引/index.html">
+<meta property="og:title" content="CountDownLath">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/CountDownLath源码解析/index.html">
 <meta property="og:site_name" content="米拉的博客">
-<meta property="og:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
+<meta property="og:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
-<meta property="og:image" content="http://yoursite.com/images/innodb-sec-key.jpg">
-<meta property="og:image" content="http://yoursite.com/images/mylsam-sec-key.jpg">
-<meta property="og:updated_time" content="2019-03-21T12:37:37.469Z">
+<meta property="og:image" content="http://yoursite.com/images/countdownlatch@2x.png">
+<meta property="og:updated_time" content="2019-03-27T13:25:01.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MYSQL索引">
-<meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
-<meta name="twitter:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
+<meta name="twitter:title" content="CountDownLath">
+<meta name="twitter:description" content="在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。CountDownLath的内结构如下：Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。">
+<meta name="twitter:image" content="http://yoursite.com/images/countdownlatch@2x.png">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/15/MYSQL索引/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/27/CountDownLath源码解析/">
 
 
 
 
 
-  <title>MYSQL索引 | 米拉的博客</title>
+  <title>CountDownLath | 米拉的博客</title>
   
 
 
@@ -257,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/MYSQL索引/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/CountDownLath源码解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mila Lee">
@@ -274,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MYSQL索引</h1>
+          <h1 class="post-title" itemprop="name headline">CountDownLath</h1>
         
 
         <div class="post-meta">
@@ -286,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-15T14:12:35+08:00">
-                2019-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T20:08:10+08:00">
+                2019-03-27
               </time>
             
 
@@ -309,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/java并发变成基础/" itemprop="url" rel="index">
+                    <span itemprop="name">java并发变成基础</span>
                   </a>
                 </span>
 
@@ -351,40 +348,68 @@
       
 
       
-        <h1 id="MYSQL索引简介"><a href="#MYSQL索引简介" class="headerlink" title="MYSQL索引简介"></a>MYSQL索引简介</h1><p>每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。</p>
-<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。<br><a id="more"></a></p>
-<h3 id="MySQL与存储引擎"><a href="#MySQL与存储引擎" class="headerlink" title="MySQL与存储引擎"></a>MySQL与存储引擎</h3><p>存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以通过SHOW ENGINES明明查看MYSQL支持的所有存储引擎。</p>
-<p><strong>InnoDB</strong>      </p>
-<ul>
-<li>MYSQL默认存储引擎</li>
-<li>支持AUTO_INCREMENT(MYSQL中规定自增列必须为主键)</li>
-<li>支持外键</li>
-<li>提供了良好的事务处理、崩溃修复能力和并发控制</li>
-<li>读写效率差，对内存和空间的占用相对较高</li>
-</ul>
-<p><strong>MyISAM</strong>     </p>
-<ul>
-<li>曾经的MYSQL默认存储引擎</li>
-</ul>
-<ul>
-<li>插入数据快、对空间和内存的占用低  </li>
-</ul>
-<ul>
-<li>不支持事物的完整性和并发性。使用于主要是插入新纪录或查询记录的表</li>
-</ul>
-<p><strong>MEMORY</strong>      </p>
-<ul>
-<li>使用存储在内存中的内容创建表、数据也保存在内存中</li>
-<li>默认使用哈希索引，数据处理速度快</li>
-<li>操作安全性低、对内存的占用高</li>
-</ul>
-<h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>在介绍存储引擎和索引之前先了解几个概念:主索引(Primary Key,根据主键建立的索引),辅助索引(Secondary Key,非主键索引),聚集索引(树状结构的索引&amp;叶节点包含了完整的数据记录而不是指向的地址位置)</p>
-<p>InnoDB使用<strong>B+Tree</strong>(欢迎移步查看文章<a href="/2019/03/18/B树和B+树/" title="B树和B+树">B树和B+树</a>)作为索引结构。</p>
-<p><img src="/images/innodb-pri-key.jpg" alt="主索引结构图"><br>在使用InnoDB的数据库中，如果没有设置索引，MYSQL系统会自动选择一个可以唯一标志数据的字段作为索引，但如果没有这样的字段，会生成一个隐含的字段作为主键(对表的使用者不可见)。基于这样的特性，说明使用InnoDB的数据库表总是有主键的，则会生成主键索引，则说明InnoDB的数据文件本身就是索引文件。</p>
-<p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
-<p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
-<h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM索引实现也是用的B+Tree作为索引结构，不一样的是叶节点存放的是数据记录的地址。主索引和辅助索引的结构一样，叶节点也都是存放的数据记录的地址，只是主索引的key值唯一，而辅助索引的key值可以重复。<br><img src="/images/mylsam-sec-key.jpg" alt="辅助引结构图">          </p>
-<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html</a>]</em>   </p>
+        <p>在遇到多线程的操作时，有时我们会遇到一个线程要等其他线程准备就绪或者等其他线程都执行完毕后执行，这时候CountDownLath便能派上用场，操作简单，十分好用。<br>CountDownLath的内结构如下：<br><img src="/images/countdownlatch@2x.png" alt="CountDownLath内结构"><br>Sync是 CountDownLath的一个内部类，继承自AbstractQueuedSynchronizer，并重写了tryAcquireShared和tryReleaseShared方法。<br>    private static final class Sync extends AbstractQueuedSynchronizer {<br>        private static final long serialVersionUID = 4982264981922014374L;</p>
+<pre><code>    Sync(int count) {
+        setState(count);
+    }
+
+    int getCount() {
+        return getState();
+    }
+
+    protected int tryAcquireShared(int acquires) {
+        return (getState() == 0) ? 1 : -1;
+    }
+
+    protected boolean tryReleaseShared(int releases) {
+        // Decrement count; signal when transition to zero
+        for (;;) {
+            int c = getState();
+            if (c == 0)
+                return false;
+            int nextc = c-1;
+            if (compareAndSetState(c, nextc))
+                return nextc == 0;
+        }
+    }
+}   
+</code></pre><p>CountDownLatch的初始化，n为需要观察的线程数，用来设置内部类Sync的state字段值<br>    private static CountDownLatch latch = new CountDownLatch(n);<br>每个线程完成操作后，可以调用countDown方法，通过调用AQS的releaseShared方法使state的值减1.<br>下面是一个简单的示例：<br>    public class CountDownLatchTest {</p>
+<pre><code>static CountDownLatch start = new CountDownLatch(1);
+static CountDownLatch end;
+
+public static void main(String[] args) throws InterruptedException {
+    int threadCount = 10;
+    end = new CountDownLatch(threadCount);
+    for (int i = 0; i &lt; threadCount; i++) {
+        Thread thread = new Thread(new Runner(i));
+        thread.start();
+    }
+
+    System.out.println(&quot;线程开始执行&quot;);
+    start.countDown();
+    end.await();
+    System.out.println(&quot;所有线程执行完毕&quot;);
+}
+
+private static class Runner implements Runnable {
+
+    private int i;
+
+    public Runner(int i) {
+        this.i = i;
+    }
+
+    public void run() {
+
+        try {
+            start.await();
+        } catch (Exception e) {
+        }
+        System.out.println(&quot;线程&quot; + i + &quot;开始执行------&quot;);
+        end.countDown();
+    }
+}
+</code></pre><p> }<br> 打印结果：<br>线程开始执行<br>线程2开始执行———<br>线程4开始执行———<br>线程3开始执行———<br>线程8开始执行———<br>线程0开始执行———<br>线程1开始执行———<br>线程9开始执行———<br>线程7开始执行———<br>线程6开始执行———<br>线程5开始执行———<br>所有线程执行完毕</p>
 
       
     </div>
@@ -400,14 +425,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
-          
-            <a href="/tags/索引/" rel="tag"># 索引</a>
-          
-        </div>
-      
 
       
       
@@ -417,15 +434,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/23/Java并发变成基础/" rel="next" title="Java并发编程基础">
+                <i class="fa fa-chevron-left"></i> Java并发编程基础
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/18/B树和B+树/" rel="prev" title="B树和B+树">
-                B树和B+树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -477,17 +494,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -549,22 +557,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MYSQL索引简介"><span class="nav-number">1.</span> <span class="nav-text">MYSQL索引简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL与存储引擎"><span class="nav-number">1.0.1.</span> <span class="nav-text">MySQL与存储引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB索引实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">InnoDB索引实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM索引实现"><span class="nav-number">1.0.3.</span> <span class="nav-text">MyISAM索引实现</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
