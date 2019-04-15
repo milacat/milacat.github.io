@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="余忆童稚时，能张目对日，明察秋毫，见藐小之物必细察其纹理，故时有物外之趣。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="米拉的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/03/index.html">
+<meta name="description" content="类加载机制概述虚拟机把描述类的Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接读取的java类型，这就是虚拟机的类加载机制。     类在jvm中的生命周期类从被加载到虚拟机内存中开始，到卸载出内存为止，这个过程称为类的生命周期，主要包括以下过程：加载、验证、准备、解析、初始化、使用、卸载。其中，验证、准备、解析3个部分统称为连接。 这7个阶段发生的顺序如下图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟机类加载机制">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/虚拟机类加载机制/index.html">
 <meta property="og:site_name" content="米拉的博客">
-<meta property="og:description" content="余忆童稚时，能张目对日，明察秋毫，见藐小之物必细察其纹理，故时有物外之趣。">
+<meta property="og:description" content="类加载机制概述虚拟机把描述类的Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接读取的java类型，这就是虚拟机的类加载机制。     类在jvm中的生命周期类从被加载到虚拟机内存中开始，到卸载出内存为止，这个过程称为类的生命周期，主要包括以下过程：加载、验证、准备、解析、初始化、使用、卸载。其中，验证、准备、解析3个部分统称为连接。 这7个阶段发生的顺序如下图">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T06:34:28.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="米拉的博客">
-<meta name="twitter:description" content="余忆童稚时，能张目对日，明察秋毫，见藐小之物必细察其纹理，故时有物外之趣。">
+<meta name="twitter:title" content="虚拟机类加载机制">
+<meta name="twitter:description" content="类加载机制概述虚拟机把描述类的Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接读取的java类型，这就是虚拟机的类加载机制。     类在jvm中的生命周期类从被加载到虚拟机内存中开始，到卸载出内存为止，这个过程称为类的生命周期，主要包括以下过程：加载、验证、准备、解析、初始化、使用、卸载。其中，验证、准备、解析3个部分统称为连接。 这7个阶段发生的顺序如下图">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/03/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/15/虚拟机类加载机制/">
 
 
 
 
 
-  <title>归档 | 米拉的博客</title>
+  <title>虚拟机类加载机制 | 米拉的博客</title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,177 +238,147 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/虚拟机类加载机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mila Lee">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米拉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">虚拟机类加载机制</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T11:28:41+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/27/CountDownLath源码解析/" itemprop="url">
-              
-                <span itemprop="name">CountDownLath</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-27T20:08:10+08:00" content="2019-03-27">
-          03-27
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/23/Java并发变成基础/" itemprop="url">
-              
-                <span itemprop="name">Java并发编程基础</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-23T15:29:26+08:00" content="2019-03-23">
-          03-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/B树和B+树/" itemprop="url">
-              
-                <span itemprop="name">B树和B+树</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T22:41:42+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="类加载机制概述"><a href="#类加载机制概述" class="headerlink" title="类加载机制概述"></a>类加载机制概述</h2><p>虚拟机把描述类的Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接读取的java类型，这就是虚拟机的类加载机制。    </p>
+<h2 id="类在jvm中的生命周期"><a href="#类在jvm中的生命周期" class="headerlink" title="类在jvm中的生命周期"></a>类在jvm中的生命周期</h2><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，这个过程称为类的生命周期，主要包括以下过程：<strong>加载、验证、准备、解析、初始化、使用、卸载</strong>。其中，验证、准备、解析3个部分统称为<strong>连接</strong>。 这7个阶段发生的顺序如下图所示<br><a href="/images/floder1/类生命周期.png">!类的生命周期</a><br><a id="more"></a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/15/MYSQL索引/" itemprop="url">
-              
-                <span itemprop="name">MYSQL索引</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-15T14:12:35+08:00" content="2019-03-15">
-          03-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/static关键字的四种用法/" rel="next" title="static关键字的四种用法">
+                <i class="fa fa-chevron-left"></i> static关键字的四种用法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -415,6 +386,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -435,8 +410,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -498,6 +482,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载机制概述"><span class="nav-number">1.</span> <span class="nav-text">类加载机制概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类在jvm中的生命周期"><span class="nav-number">2.</span> <span class="nav-text">类在jvm中的生命周期</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -658,6 +658,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
