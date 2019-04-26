@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据库,索引,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,22 +79,19 @@
 
 
 
-<meta name="description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
-<meta name="keywords" content="数据库,索引">
+<meta name="description" content="Java虚拟机在执行Java程序的过程中，会把它所管理的内存划分为若干个不同的数据区域，每个区域都有各自的用途、创建和销毁时间。根据《Java虚拟机规范(Java SE 7版)》的规定，Java虚拟机所管理的内存如下图所以：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MYSQL索引">
-<meta property="og:url" content="http://yoursite.com/2019/03/15/MYSQL索引/index.html">
+<meta property="og:title" content="Java内存区域">
+<meta property="og:url" content="http://yoursite.com/2019/04/26/Java内存区域/index.html">
 <meta property="og:site_name" content="米拉的博客">
-<meta property="og:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
+<meta property="og:description" content="Java虚拟机在执行Java程序的过程中，会把它所管理的内存划分为若干个不同的数据区域，每个区域都有各自的用途、创建和销毁时间。根据《Java虚拟机规范(Java SE 7版)》的规定，Java虚拟机所管理的内存如下图所以：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
-<meta property="og:image" content="http://yoursite.com/images/innodb-sec-key.jpg">
-<meta property="og:image" content="http://yoursite.com/images/mylsam-sec-key.jpg">
-<meta property="og:updated_time" content="2019-03-21T12:37:37.469Z">
+<meta property="og:image" content="http://yoursite.com/images/floder1/vm_runtime_data_area.png">
+<meta property="og:updated_time" content="2019-04-26T08:09:57.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MYSQL索引">
-<meta name="twitter:description" content="MYSQL索引简介每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。 本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。">
-<meta name="twitter:image" content="http://yoursite.com/images/innodb-pri-key.jpg">
+<meta name="twitter:title" content="Java内存区域">
+<meta name="twitter:description" content="Java虚拟机在执行Java程序的过程中，会把它所管理的内存划分为若干个不同的数据区域，每个区域都有各自的用途、创建和销毁时间。根据《Java虚拟机规范(Java SE 7版)》的规定，Java虚拟机所管理的内存如下图所以：">
+<meta name="twitter:image" content="http://yoursite.com/images/floder1/vm_runtime_data_area.png">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/15/MYSQL索引/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/26/Java内存区域/">
 
 
 
 
 
-  <title>MYSQL索引 | 米拉的博客</title>
+  <title>Java内存区域 | 米拉的博客</title>
   
 
 
@@ -257,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/MYSQL索引/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/Java内存区域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mila Lee">
@@ -274,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MYSQL索引</h1>
+          <h1 class="post-title" itemprop="name headline">Java内存区域</h1>
         
 
         <div class="post-meta">
@@ -286,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-15T14:12:35+08:00">
-                2019-03-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-26T15:52:23+08:00">
+                2019-04-26
               </time>
             
 
@@ -309,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
                   </a>
                 </span>
 
@@ -351,40 +348,16 @@
       
 
       
-        <h1 id="MYSQL索引简介"><a href="#MYSQL索引简介" class="headerlink" title="MYSQL索引简介"></a>MYSQL索引简介</h1><p>每当在数据库中新添加一张表时，我们都应该根据数据量、表结构考虑是否为表添加索引。索引代表着被检索字段和真实的数据位置信息的映射关系。</p>
-<p>本文以MYSQL为研究对象，讨论我们会接触到的一些索引类型，并比较这些索引类型的异同点。<br><a id="more"></a></p>
-<h3 id="MySQL与存储引擎"><a href="#MySQL与存储引擎" class="headerlink" title="MySQL与存储引擎"></a>MySQL与存储引擎</h3><p>存储引擎指表的类型以及表在计算机上的存储方式。这一概念也并不是所有数据库都有的，Oracle数据库就只有模式的概念而无存储引擎的概念。可以通过SHOW ENGINES明明查看MYSQL支持的所有存储引擎。</p>
-<p><strong>InnoDB</strong>      </p>
-<ul>
-<li>MYSQL默认存储引擎</li>
-<li>支持AUTO_INCREMENT(MYSQL中规定自增列必须为主键)</li>
-<li>支持外键</li>
-<li>提供了良好的事务处理、崩溃修复能力和并发控制</li>
-<li>读写效率差，对内存和空间的占用相对较高</li>
-</ul>
-<p><strong>MyISAM</strong>     </p>
-<ul>
-<li>曾经的MYSQL默认存储引擎</li>
-</ul>
-<ul>
-<li>插入数据快、对空间和内存的占用低  </li>
-</ul>
-<ul>
-<li>不支持事物的完整性和并发性。使用于主要是插入新纪录或查询记录的表</li>
-</ul>
-<p><strong>MEMORY</strong>      </p>
-<ul>
-<li>使用存储在内存中的内容创建表、数据也保存在内存中</li>
-<li>默认使用哈希索引，数据处理速度快</li>
-<li>操作安全性低、对内存的占用高</li>
-</ul>
-<h3 id="InnoDB索引实现"><a href="#InnoDB索引实现" class="headerlink" title="InnoDB索引实现"></a>InnoDB索引实现</h3><p>在介绍存储引擎和索引之前先了解几个概念:主索引(Primary Key,根据主键建立的索引),辅助索引(Secondary Key,非主键索引),聚集索引(树状结构的索引&amp;叶节点包含了完整的数据记录而不是指向的地址位置)</p>
-<p>InnoDB使用<strong>B+Tree</strong>(欢迎移步查看文章<a href="/2019/03/18/B树和B+树/" title="B树和B+树">B树和B+树</a>)作为索引结构。</p>
-<p><img src="/images/innodb-pri-key.jpg" alt="主索引结构图"><br>在使用InnoDB的数据库中，如果没有设置索引，MYSQL系统会自动选择一个可以唯一标志数据的字段作为索引，但如果没有这样的字段，会生成一个隐含的字段作为主键(对表的使用者不可见)。基于这样的特性，说明使用InnoDB的数据库表总是有主键的，则会生成主键索引，则说明InnoDB的数据文件本身就是索引文件。</p>
-<p>需要说明的是，辅助索引结构中叶子节点的值并不是记录的位置信息，而是相应记录主键的值。<br><img src="/images/innodb-sec-key.jpg" alt="辅助引结构图"><br>使用辅助索引的查找过程为辅助索引-&gt;主键索引</p>
-<p>在看完主键索引的结构后才明白了为什么之前leader会要求InnoDB数据库的主键用自增的整型。如果是非单调的字段作为主键，在插入新记录时数据文件为了维持B+Tree的特性而频繁的分裂调整，另外过长的主索引会令辅助索引变得过大。</p>
-<h3 id="MyISAM索引实现"><a href="#MyISAM索引实现" class="headerlink" title="MyISAM索引实现"></a>MyISAM索引实现</h3><p>MyISAM索引实现也是用的B+Tree作为索引结构，不一样的是叶节点存放的是数据记录的地址。主索引和辅助索引的结构一样，叶节点也都是存放的数据记录的地址，只是主索引的key值唯一，而辅助索引的key值可以重复。<br><img src="/images/mylsam-sec-key.jpg" alt="辅助引结构图">          </p>
-<p><em><a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">本文图片来源</a></em><br><em>参考文章：[<a href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html" target="_blank" rel="noopener">http://blog.codinglabs.org/articles/theory-of-mysql-index.html</a>]</em>   </p>
+        <p>Java虚拟机在执行Java程序的过程中，会把它所管理的内存划分为若干个不同的数据区域，每个区域都有各自的用途、创建和销毁时间。根据《Java虚拟机规范(Java SE 7版)》的规定，Java虚拟机所管理的内存如下图所以：<br><img src="/images/floder1/vm_runtime_data_area.png" alt="Java虚拟机运行时数据区域"><br>  <a id="more"></a>    </p>
+<h4 id="程序计数器-Program-Counter-Register"><a href="#程序计数器-Program-Counter-Register" class="headerlink" title="程序计数器(Program Counter Register)"></a>程序计数器(Program Counter Register)</h4><p> 一块较小的内存空间，可以看成是当前线程所执行的字节码行号指示器，在多线程模式下，每个线程都有一个独立的程序计数器，互不影响。因为，这类内存区域称为“线程私有”的内存。<br> 如果线程正在执行的是Java方法，则计数器记录的是正在执行的虚拟机字节码指定的地址，如果正在执行的是Native方法，则计数器则为空(Undefined), 可以理解为Native方法的执行是交给系统的，没有分配程序计数器。此内存区域是唯一一个没有规定任何OutOfMemoryError情况的区域。 </p>
+<h4 id="java虚拟机栈-VM-Stack"><a href="#java虚拟机栈-VM-Stack" class="headerlink" title="java虚拟机栈(VM Stack)"></a>java虚拟机栈(VM Stack)</h4><p>线程私有，生命周期和线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时会创建一个栈帧(Stack Frame)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用到执行完成的过程，就对应这一个栈帧在虚拟机中入栈到出栈的过程。   </p>
+<p>我们平时会把Java内存粗糙的分为<strong>堆内存</strong>和<strong>栈内存</strong>两部分，所指的“栈“就是现在所说的虚拟机栈，更确切的说是虚拟机栈中的局部变量表部分,<strong>局部变量表</strong>存放了编译期可知的各种基本数据类型（boolean、byte、char、short、int、float、long、double）、对象的引用（reference类型，不等同于对象本身，根据不同的虚拟机实现，可能是一个指向对象起始地址的引用指针，也可能是一个代表对象的句柄或者其他与对象相关的位置）和 returnAdress类型（指向下一条字节码指令的地址）。   </p>
+<p>局部变量表所需的内存空间在编译期间完成分配，在方法在运行之前，该局部变量表所需要的内存空间是固定的，运行期间也不会改变。</p>
+<h4 id="本地方法栈-Native-Method-Stack"><a href="#本地方法栈-Native-Method-Stack" class="headerlink" title="本地方法栈(Native Method Stack)"></a>本地方法栈(Native Method Stack)</h4><p>为使用到的Native方法服务。在虚拟机规范中对本地方法栈中方法使用的语言、使用方式和数据结构并没有强制规定，因为具体的虚拟机可以自由实现它，甚至有的虚拟机(譬如Sun HotSpot虚拟机)直接把本地方法栈和虚拟机栈合二为一。</p>
+<h4 id="java堆-Heap"><a href="#java堆-Heap" class="headerlink" title="java堆 (Heap)"></a>java堆 (Heap)</h4><p>对于大多数应用，Java堆是Java虚拟机所管理的内存中最大的一块,也是垃圾收集器管理的主要区域,因此很多时候也被成为GC堆。 Java堆是被所有线程共享的一块区域内存，<strong>在虚拟机启动时创建</strong>。这个区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。</p>
+<h4 id="方法区-method-Area"><a href="#方法区-method-Area" class="headerlink" title="方法区 method Area"></a>方法区 method Area</h4><p>方法区和Java堆一样，是各个线程共享的内存区域。用来存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br>当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。   </p>
+<h4 id="运行时常量池-Runtime-Constant-Pool"><a href="#运行时常量池-Runtime-Constant-Pool" class="headerlink" title="运行时常量池 (Runtime Constant Pool)"></a>运行时常量池 (Runtime Constant Pool)</h4><p>运行时常量池是方法区的一部分，Class文件中除了有类的版本、字段、方法、接口等信息外，还有一项信息是常量池，用于存放编译期间生成的各种字面量和符号引用，这部分内容将在类加载后进入方法区的运行时常量池中存放。<br>当常量池无法申请到内存分配时，将抛出OutOfMemoryError异常。</p>
+<h4 id="直接内存-Direct-Memory"><a href="#直接内存-Direct-Memory" class="headerlink" title="直接内存(Direct Memory)"></a>直接内存(Direct Memory)</h4><p>直接内存并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域</p>
 
       
     </div>
@@ -400,14 +373,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
-          
-            <a href="/tags/索引/" rel="tag"># 索引</a>
-          
-        </div>
-      
 
       
       
@@ -417,15 +382,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/26/浅谈垃圾收集器与内存分配策略/" rel="next" title="浅谈垃圾收集器与内存分配策略">
+                <i class="fa fa-chevron-left"></i> 浅谈垃圾收集器与内存分配策略
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/18/B树和B+树/" rel="prev" title="B树和B+树">
-                B树和B+树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MYSQL索引简介"><span class="nav-number">1.</span> <span class="nav-text">MYSQL索引简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL与存储引擎"><span class="nav-number">1.0.1.</span> <span class="nav-text">MySQL与存储引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB索引实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">InnoDB索引实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM索引实现"><span class="nav-number">1.0.3.</span> <span class="nav-text">MyISAM索引实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#程序计数器-Program-Counter-Register"><span class="nav-number">1.</span> <span class="nav-text">程序计数器(Program Counter Register)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java虚拟机栈-VM-Stack"><span class="nav-number">2.</span> <span class="nav-text">java虚拟机栈(VM Stack)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地方法栈-Native-Method-Stack"><span class="nav-number">3.</span> <span class="nav-text">本地方法栈(Native Method Stack)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java堆-Heap"><span class="nav-number">4.</span> <span class="nav-text">java堆 (Heap)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法区-method-Area"><span class="nav-number">5.</span> <span class="nav-text">方法区 method Area</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时常量池-Runtime-Constant-Pool"><span class="nav-number">6.</span> <span class="nav-text">运行时常量池 (Runtime Constant Pool)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接内存-Direct-Memory"><span class="nav-number">7.</span> <span class="nav-text">直接内存(Direct Memory)</span></a></li></ol></div>
             
 
           </div>
